@@ -6,16 +6,17 @@ import (
 )
 
 func main() {
-	c := make(chan bool)
-	people := [2]string{"nico", "flynn"}
+	c := make(chan string)
+	people := [4]string{"nico", "flynn", "super", "god"}
 	for _, person := range people {
 		go isSexy(person, c)
 	}
-	result := <-c
-	fmt.Println(result)
+	for i := 0; i < len(people); i++ {
+		fmt.Println(<-c)
+	}
 }
 
-func isSexy(person string, c chan bool) {
+func isSexy(person string, c chan string) {
 	time.Sleep(time.Second * 5)
-	c <- true
+	c <- person + "is Sexy"
 }
