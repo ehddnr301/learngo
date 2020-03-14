@@ -39,3 +39,27 @@
 
 - time.Sleep(time.Second) 하면 1초를 쉰다.
 - time.Sleep(time.Second * 5) 하면 5초를 쉰다.
+
+
+### 3
+
+#### Channel
+
+- goroutine이랑 메인함수 사이에 정보를 전달하기 위한 방법.
+- goroutine 끼리도 정보전달 가능.
+- pipe같은 것으로 메시지를 보낼수도 있고 받을수도 있다.
+
+#### Channel 만들기.
+
+- 어떤 타입의 데이터를 보낼건지 chan 뒤에 적어줘야한다.
+- `c := make(chan bool)`
+- 그리고 goroutine 에서는 어떤 채널을 사용하는지 알려줘야한다.
+- `go isSexy(person, c)`
+- 그리고 function 에서는 어떤 routine을 사용하는지 표시한다.
+- `func isSexy(person string, c chan bool){}`
+- 그리고 function 에서는 return이 아니라 `<-` 을 사용한다.
+- `c <- true`
+- main함수에서 function에서 보낸 true를 찾으려면 ?
+- `result := <-c` 해준다
+  - 채널로 부터 뭔가 받을 때 메인함수는 어떤 값이 올때까지 기다린다.
+  - `fmt.Println(<-c)` 도 가능하다.
