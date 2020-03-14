@@ -8,5 +8,5 @@
 
 ### dictionary
 
-- map
+- map (delte, search)
 - [사전](./mydict/dict.md)
