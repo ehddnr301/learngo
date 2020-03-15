@@ -23,3 +23,11 @@
 - trim space 라는 기능으로 space 를 지웁니다.
 - Fields로 text부분을 다 조각내서 모든 space를 찾아내 지우려 합니다.
 - `jobs = append(jobs, extractedJobs...)` jobs에 append 해줄때 `[[], [], []]` 이런식으로 되지않으려고 다 unpack되게함.
+
+### 4
+
+- csv 온라인 에디터로 csv 체크!
+- ``` 
+  w := csv.NewWriter(file)
+  defer w.Flush()
+- 로 생성 그리고 `wErr := w.Write()` 로 작성 Write는 error를 return
