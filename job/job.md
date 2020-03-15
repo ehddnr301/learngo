@@ -31,3 +31,30 @@
   w := csv.NewWriter(file)
   defer w.Flush()
 - 로 생성 그리고 `wErr := w.Write()` 로 작성 Write는 error를 return
+
+### 5
+
+- goroutine 플랜!
+  - getPages 를 실행!
+  - 그밑에 getPage가 동시에 실행되길 원함 (각 페이지별로 goroutine을 생성)
+  - getPage밑에 extractJob을 동시에 실행되길 원함. (각 card별로 gorutine을 생성)
+
+- gorutine 플랜!
+  - extractJob 함수는 getPage함수와 channel을 이용해서 정보를 주고받음.
+  - getPage함수는 main함수와 channel을 이용해서 정보를 주고받음.
+
+- 작업순서
+  - 제일 밑에있는 extractJob부터 goroutine을 생성.
+
+- 상세작업
+  - getPage에 channel을 만든다. `c := make(chan extractedJob)`
+  - extractJob에 인자로 c라는 채널을 준다.
+  - extractJob 함수에 `c chan<- extractedJob`을 적어준다.
+  - 이제 extractJob 함수는 return 대신 채널에 값을 전송한다.
+  - extractJob의 결과를 job에 저장하는 대신 `go extractJob(card, c)` 로 고루틴으로 만들어준다.
+  - ```
+      for i:=0; i<searchCards.Length();i++{
+    		job := <-c
+    		jobs = append(jobs, job)
+    	}
+  - 로 채널에서 값을받아준다.
