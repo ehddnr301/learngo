@@ -16,3 +16,10 @@
 ### 2
 
 - `Each()` 는 `func(i int, s *goquery.Selection){}` 가 필요하다.
+
+### 3
+
+- strings 라는 패키지를 사용합니다.
+- trim space 라는 기능으로 space 를 지웁니다.
+- Fields로 text부분을 다 조각내서 모든 space를 찾아내 지우려 합니다.
+- `jobs = append(jobs, extractedJobs...)` jobs에 append 해줄때 `[[], [], []]` 이런식으로 되지않으려고 다 unpack되게함.
